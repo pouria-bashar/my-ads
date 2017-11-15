@@ -1,0 +1,29 @@
+.items {
+  display: block;
+  margin-right: -16px;
+}
+
+.container h2 {
+  color: $dark_blue;
+  margin-bottom: 2rem;
+}
+
+.items > div {
+  display: inline-block;
+  margin-bottom: 16px;
+  margin-right: 20px;
+}
+
+.container form {
+  margin-bottom: 32px;
+}
+
+
+@media screen and (max-width: 520px) {
+  .items {
+    margin-right: 0;
+  }
+  .items > div {
+    width: 100%;
+  }
+}

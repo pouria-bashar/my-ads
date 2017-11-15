@@ -1,0 +1,37 @@
+@import '../colours.css';
+
+
+.container {
+  display: block;
+}
+
+
+.item {
+  display: inline-flex;
+  width: 100px;
+  padding: 20px;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+  margin-right: 8px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+.item i {
+  font-size: 48px;
+}
+
+
+.item input {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  width: 100%;
+  cursor: pointer;
+}
+.active {
+  border: solid 1px $green;
+}

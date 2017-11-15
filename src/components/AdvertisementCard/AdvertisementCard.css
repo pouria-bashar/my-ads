@@ -1,0 +1,32 @@
+@import '../colours.css';
+
+.container {
+  width: 224px;
+  box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+}
+
+.content {
+  font-size: 14px;
+  color: $dark_blue;
+  padding: 10px;
+}
+
+.content > div {
+  margin-bottom: 10px;
+}
+
+.container img{
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.price {
+  font-weight: bold;
+  text-align: right;
+}

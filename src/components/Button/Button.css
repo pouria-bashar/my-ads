@@ -1,0 +1,11 @@
+@import '../colours.css';
+
+.container {
+  background: $blue;
+  border: 0;
+  padding: 16px;
+  color: #fff;
+  cursor: pointer;
+  margin: 8px 0;
+  min-width: 100px;
+}
