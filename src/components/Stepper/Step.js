@@ -1,26 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Stepper.css';
-import classNames from 'classnames/bind';
-
-const cx = classNames.bind(styles);
-
-const wrapperStyle = {
-  overflow: 'hidden',
-};
-const contentStyle = {
-  position: 'relative',
-  overflow: 'hidden',
-};
-
-const childrenStyle = {
-  position: 'relative',
-  width: '100%',
-  top: '0px',
-  left: '0px',
-  overflow: 'hidden',
-  transition: 'all 1s',
-};
 
 class Step extends React.Component {
   static propTypes = {
@@ -43,12 +23,11 @@ class Step extends React.Component {
           <span>{index + 1}</span>
           <strong>{title}</strong>
         </div>
-        <div style={wrapperStyle}>
-          <div style={contentStyle}>
-            <div style={{ ...childrenStyle, height: isExpanded ? 'auto' : '0' }}>
-              {isExpanded && children}
-            </div>
-          </div>
+        <div
+          className={styles.content}
+          style={{ transform: isExpanded ? 'scaleY(1)' : 'scaleY(0)' }}
+        >
+          {isExpanded && children}
         </div>
       </div>
     );

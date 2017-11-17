@@ -10,10 +10,6 @@ class Picture extends React.Component {
     isActive: PropTypes.bool,
   }
 
-  openDialogue() {
-
-  }
-
   render() {
     const {
       isActive,

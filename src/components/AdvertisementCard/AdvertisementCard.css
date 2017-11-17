@@ -17,6 +17,7 @@
 
 .container img{
   max-width: 100%;
+  width: 100%;
   height: auto;
   vertical-align: middle;
   border: 0;
@@ -29,4 +30,40 @@
 .price {
   font-weight: bold;
   text-align: right;
+}
+
+
+.container:hover .carousel i {
+  opacity: 1;
+}
+
+/**
+ * Carousel
+ */
+
+
+.carousel {
+  position: relative;
+}
+
+.carousel i {
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 1s;
+  &:hover {
+    background: red;
+  }
+}
+
+
+.carousel i:first-child {
+  left: 0;
+}
+
+.carousel i:nth-child(2) {
+  right: 0;
 }

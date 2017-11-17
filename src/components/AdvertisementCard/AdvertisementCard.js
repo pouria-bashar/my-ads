@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './AdvertisementCard.css';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import Carousel from './Carousel';
 
 const cx = classNames.bind(styles);
 
@@ -24,7 +25,7 @@ class AdvertisementCard extends React.Component {
     } = this.props;
     return (
       <div className={cx({ container: true, [className]: !!className })} tabIndex="0">
-        <img src={item.image} alt="" />
+        <Carousel images={item.images} />
         <div className={styles.content}>
           <div className={styles.title}>
             {item.title}

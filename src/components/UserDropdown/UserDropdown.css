@@ -1,0 +1,57 @@
+@import '../colours.css';
+
+.userDropdown {
+  position: relative;
+}
+.userDropdown > span{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: #babebf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.options {
+  z-index: 1;
+  text-align: left;
+  color: $dark_blue;
+  position: absolute;
+  border-radius: 2px;
+  min-width: 200px;
+  top: 120%;
+  right: 0;
+  background: #fff;
+  box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+}
+
+.options > div {
+  padding: 20px;
+  border-bottom: solid 1px $white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  & > span {
+    margin-left: 8px;
+  }
+  &:hover {
+    background: #ecf0f1;
+  }
+}
+
+
+.options::before {
+  position: absolute;
+  top: -6px;
+  right: 15px;
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+
+  border-bottom: 5px solid black;
+}
