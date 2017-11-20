@@ -37,7 +37,7 @@ class Carousel extends React.Component {
           {
             images.map((image, index) => (
               <img
-                style={{ display: imageIndex === index ? 'none' : 'block' }}
+                style={{ display: imageIndex === index ? 'block' : 'none' }}
                 key={index}
                 src={image}
                 alt=""

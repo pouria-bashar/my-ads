@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const { resolve } = require('path');
 
+const jsAssetsPath = resolve(__dirname, 'build', 'assets', 'js');
+
 module.exports = {
   entry: [
     'babel-polyfill',
@@ -9,6 +11,11 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './index.js',
   ],
+  output: {
+    filename: 'bundle.js',
+    path: jsAssetsPath,
+    publicPath: '/assets/js',
+  },
   devServer: {
     host: 'localhost',
     port: 3000,
@@ -28,6 +35,10 @@ module.exports = {
 				test: /\.css$/,
 				loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&camelCase!postcss-loader',
 			},
+      {
+       test: /\.svg$/,
+       loader: 'svg-inline-loader?classPrefix',
+      },
     ],
   },
   resolve: {

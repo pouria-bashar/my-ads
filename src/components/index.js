@@ -7,3 +7,4 @@ export { default as Stepper } from './Stepper/Stepper';
 export { default as PicturesUpload } from './PicturesUpload/PicturesUpload';
 export { default as TextArea } from './TextArea/TextArea';
 export { default as UserDropdown } from './UserDropdown/UserDropdown';
+export { default as Footer } from './Footer/Footer';

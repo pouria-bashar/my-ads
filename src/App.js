@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Login, CreateAd, Dashboard, AdvertDetails } from 'views';
-import { NavigationBar } from 'components';
+import { NavigationBar, Footer } from 'components';
 import {
   BrowserRouter as Router,
   Route,
@@ -37,6 +37,7 @@ class App extends React.Component {
               />
             </Switch>
           </main>
+          <Footer />
         </div>
       </Router>
     );

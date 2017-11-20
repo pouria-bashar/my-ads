@@ -1,9 +1,28 @@
 @import '../colours.css';
 
 .navigation {
-  padding: 20px 60px;
+  box-shadow: 0 0 9px 0 #000000;
+  padding: 10px;
+  background: $dark_blue;
+  color: #fff;
+}
+
+.wrapper {
+  max-width: 960px;
+  min-height: 40px;
+  display: flex;
+  margin: auto;
+}
+
+.logo {
+  width: 110px;
+  height: 40px;
+}
+
+.navigation ul {
+  flex-grow: 1;
+  margin: auto;
   box-sizing: border-box;
-  background: $white;
   text-align: right;
 }
 .navigation li {
@@ -14,16 +33,16 @@
 .navigation a {
   padding: 4px 0;
   margin-right: 16px;
-  color: $dark_blue;
   cursor: pointer;
   box-sizing: border-box;
   text-decoration: none;
   text-transform: uppercase;
   position: relative;
+  font-size: 14px;
+  color: #fff;
 }
 
-
-.active:after {
+.navigation a:after {
   content: '';
   position: absolute;
   left: 0;
@@ -31,7 +50,14 @@
   top: 100%;
   height: 4px;
   background: red;
+  transition: all .5s;
+  opacity: 0;
 }
+
+.navigation .active:after {
+  opacity: 1;
+}
+
 
 
 .mobile {
@@ -40,8 +66,19 @@
 }
 
 
+.mobileNav {
+  position: fixed;
+  top: 34px;
+  background: red;
+  bottom: 0;
+  width: 150px;
+  z-index: 2;
+}
+
+
 @media (max-width: 800px) {
   .mobile {
     display: block;
+    text-align: left;
   }
 }

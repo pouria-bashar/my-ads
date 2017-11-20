@@ -1,0 +1,6 @@
+@import '../colours.css';
+
+.footer {
+  height: 140px;
+  background: $dark_blue;
+}

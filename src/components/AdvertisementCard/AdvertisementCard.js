@@ -24,7 +24,10 @@ class AdvertisementCard extends React.Component {
       onClick,
     } = this.props;
     return (
-      <div className={cx({ container: true, [className]: !!className })} tabIndex="0">
+      <div
+        className={cx({ container: true, [className]: !!className })}
+        tabIndex="0"
+      >
         <Carousel images={item.images} />
         <div className={styles.content}>
           <div className={styles.title}>
