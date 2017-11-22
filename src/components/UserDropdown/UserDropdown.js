@@ -27,7 +27,7 @@ class UserDropdown extends React.Component {
   }
 
   render() {
-    const { initials } = this.props;
+    const { initials, onLogout } = this.props;
     const { showOptions } = this.state;
     return (
       <div
@@ -36,7 +36,7 @@ class UserDropdown extends React.Component {
         ref={(el) => { this.container = el; }}
       >
         <span>{initials}</span>
-        {showOptions && <Options options={[{ title: 'My Profile', icon: 'face' }, { title: 'Logout', icon: 'power_settings_new' }]} />}
+        {showOptions && <Options options={[{ title: 'My Profile', icon: 'face' }, { title: 'Logout', icon: 'power_settings_new', onClick: onLogout }]} />}
       </div>
     );
   }
@@ -44,5 +44,6 @@ class UserDropdown extends React.Component {
 
 UserDropdown.propTypes = {
   initials: PropTypes.string,
+  onLogout: PropTypes.func.isRequired,
 };
 export default UserDropdown;

@@ -27,11 +27,12 @@ class TextField extends React.Component {
       error,
       style,
       placeholder,
+      ...rest
     } = this.props;
     return (
       <div style={style} className={cx({ container: true, [className]: !!className, error })}>
         {label && <label htmlFor="input">{label}</label>}
-        <input id="input" type={type} placeholder={placeholder} />
+        <input id="input" type={type} placeholder={placeholder} {...rest} />
         {
           error &&
           <div className={styles.errorContainer}>{error}</div>

@@ -9,4 +9,15 @@
   margin: 8px 0;
   min-width: 100px;
   font-size: 1rem;
+  height: 56px;
+}
+
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+.spin {
+  animation: spin 1s infinite linear;
 }

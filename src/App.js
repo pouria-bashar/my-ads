@@ -1,46 +1,65 @@
 import React from 'react';
 import './App.css';
-import { Login, CreateAd, Dashboard, AdvertDetails } from 'views';
-import { NavigationBar, Footer } from 'components';
+import PropTypes from 'prop-types';
+import { Login, CreateAd, Dashboard, AdvertDetails, Signup } from 'views';
+import { NavigationBar, PrivatePath } from 'components';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
+import { graphql, compose } from 'react-apollo';
+import { queries } from '_graphql';
+import { isEmpty } from 'lodash';
 
 class App extends React.Component {
   render() {
+    const { user } = this.props.data;
+    const isAuthenticated = !isEmpty(user);
     return (
       <Router>
         <div>
-          <NavigationBar />
+          <NavigationBar
+            user={user}
+            isAuthenticated={isAuthenticated}
+          />
           <main>
             <Switch>
               <Route
                 path="/login"
-                exact
-                component={Login}
+                render={(props) => <Login isAuthenticated={isAuthenticated} {...props} />}
               />
               <Route
-                path="/create"
-                exact
-                component={CreateAd}
+                path="/signup"
+                component={Signup}
               />
-              <Route
+              <PrivatePath
                 path="/dashboard"
                 exact
                 component={Dashboard}
+                isAuthenticated={isAuthenticated}
               />
-              <Route
+              <PrivatePath
+                path="/create"
+                exact
+                component={CreateAd}
+                isAuthenticated={isAuthenticated}
+              />
+              <PrivatePath
                 path="/advert/:id"
+                exact
                 component={AdvertDetails}
+                isAuthenticated={isAuthenticated}
               />
             </Switch>
           </main>
-          <Footer />
         </div>
       </Router>
     );
   }
 }
-export default App;
+
+App.propTypes = {
+  data: PropTypes.object.isRequired,
+};
+export default compose(graphql(queries.currentUser))(App);

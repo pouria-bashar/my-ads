@@ -1,46 +1,69 @@
 import React from 'react';
 import styles from './NavigationBar.css';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { UserDropdown } from 'components';
 import AppIcon from '../../assets/icons/logo.svg';
-
+import * as Links from 'constants/routes';
+import { graphql, compose } from 'react-apollo';
+import { mutations, queries } from '_graphql';
+import { get } from 'lodash';
 
 class NavigationBar extends React.Component {
-  state = {
-    showMobile: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMobile: false,
+    };
+    this.onLogout = this.onLogout.bind(this);
   }
 
-  renderLinks() {
+  onLogout() {
+    this.props.logout({ refetchQueries: [{ query: queries.currentUser }] });
+  }
+
+  renderGuestLinks() {
     return (
       <ul>
+        {
+          Links.GUEST_LINKS.map(link => (
+            <li key={link.path}>
+              <NavLink
+                activeClassName={styles.active}
+                to={link.path}
+              >{link.label}
+              </NavLink>
+            </li>
+          ))
+        }
+      </ul>
+    );
+  }
+
+  renderuserLinks() {
+    const { user } = this.props;
+    const initials = `${get(user, 'firstName', '')[0] || ''}${get(user, 'lastName', '')[0] || ''}`;
+    return (
+      <ul>
+        {
+          Links.USER_LINKS.map(link => (
+            <li key={link.path}>
+              <NavLink
+                activeClassName={styles.active}
+                to={link.path}
+              >{link.label}
+              </NavLink>
+            </li>
+          ))
+        }
         <li>
-          <NavLink
-            activeClassName={styles.active}
-            to="/login"
-          >Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            activeClassName={styles.active}
-            to="/dashboard"
-          >Dashboard
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            activeClassName={styles.active}
-            to="/create"
-          >New Ad
-          </NavLink>
-        </li>
-        <li>
-          <UserDropdown initials="PB" />
+          <UserDropdown onLogout={this.onLogout} initials={initials} />
         </li>
       </ul>
     );
   }
   render() {
+    const { isAuthenticated } = this.props;
     return (
       <header className={styles.navigation}>
         <div className={styles.wrapper}>
@@ -52,11 +75,16 @@ class NavigationBar extends React.Component {
           <div className={styles.logo}>
             <span dangerouslySetInnerHTML={{ __html: AppIcon }} />
           </div>
-          {this.renderLinks()}
+          {isAuthenticated && this.renderuserLinks()}
+          {!isAuthenticated && this.renderGuestLinks()}
         </div>
       </header>
     );
   }
 }
-
-export default NavigationBar;
+NavigationBar.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.object,
+};
+export default compose(graphql(mutations.logout, { name: 'logout' }))(NavigationBar);

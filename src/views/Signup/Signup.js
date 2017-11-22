@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Login.css';
+import styles from './Signup.css';
 import {
   TextField,
   Button,
@@ -15,11 +15,13 @@ import { isEmpty } from 'lodash';
 const initialValues = {
   email: '',
   password: '',
+  firstName: '',
+  lastName: '',
   errors: [],
 };
 
 
-class Login extends React.Component {
+class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -40,9 +42,23 @@ class Login extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { email, password } = this.state;
+    const {
+      email,
+      password,
+      firstName,
+      lastName,
+    } = this.state;
     this.setState({ loading: true, apiError: '' });
-    this.props.login({ variables: { email, password }, refetchQueries: [{ query: queries.currentUser }] })
+    this.props.signup({
+      variables:
+      {
+        email,
+        password,
+        firstName,
+        lastName,
+      },
+      refetchQueries: [{ query: queries.currentUser }],
+    })
     .then(() => {
       this.props.history.push('/dashboard');
     })
@@ -71,7 +87,19 @@ class Login extends React.Component {
         onSubmit={this.handleSubmit}
       >
         <div className={styles.wrapper}>
-          <h2>Sign in</h2>
+          <h2>Sign up</h2>
+          <TextField
+            type="text"
+            label="First name"
+            name="firstName"
+            onChange={this.handleChange}
+          />
+          <TextField
+            type="text"
+            label="Last name"
+            name="lastName"
+            onChange={this.handleChange}
+          />
           <TextField
             type="text"
             label="Email"
@@ -86,7 +114,7 @@ class Login extends React.Component {
           />
           {!isEmpty(apiError) && <Alert type="error" message={apiError} />}
           <Button
-            text="Login"
+            text="Sign Up"
             loading={this.state.loading}
           />
         </div>
@@ -95,10 +123,10 @@ class Login extends React.Component {
   }
 }
 
-Login.propTypes = {
+Signup.propTypes = {
   isAuthenticated: PropTypes.bool,
   location: PropTypes.object,
   history: PropTypes.object.isRequired,
-  login: PropTypes.func,
+  signup: PropTypes.func,
 };
-export default compose(graphql(mutations.login, { name: 'login' }))(Login);
+export default compose(graphql(mutations.signup, { name: 'signup' }))(Signup);

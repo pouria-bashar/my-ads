@@ -12,7 +12,7 @@ class Options extends React.Component {
       <div className={styles.options}>
         {
           options.map((option, index) => (
-            <div key={index}>
+            <div onClick={option.onClick} key={index}>
               <i className="material-icons">{option.icon}</i>
               <span>{option.title}</span>
             </div>

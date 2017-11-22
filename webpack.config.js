@@ -46,6 +46,9 @@ module.exports = {
     alias: {
       views: resolve('./src/views/index.js'),
       components: resolve('./src/components/index.js'),
+      utils: resolve('./src/utils'),
+      constants: resolve('./src/constants'),
+      _graphql: resolve('./src/graphql'),
     },
   },
   plugins: [
