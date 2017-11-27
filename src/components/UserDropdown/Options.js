@@ -3,9 +3,6 @@ import styles from './UserDropdown.css';
 import PropTypes from 'prop-types';
 
 class Options extends React.Component {
-  static propTypes = {
-    options: PropTypes.array,
-  }
   render() {
     const { options } = this.props;
     return (
@@ -22,4 +19,7 @@ class Options extends React.Component {
     );
   }
 }
+Options.propTypes = {
+  options: PropTypes.array,
+};
 export default Options;

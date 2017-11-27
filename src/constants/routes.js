@@ -1,4 +1,4 @@
-const DASHBOARD = { path: '/dashboard', label: 'Dashboard' };
+const DASHBOARD = { path: '/', label: 'Dashboard' };
 const CREATE_AD = { path: '/create', label: 'Create Ad' };
 
 export const GUEST_LINKS = [];

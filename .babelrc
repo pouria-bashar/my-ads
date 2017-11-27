@@ -5,11 +5,12 @@
     "react"
   ],
   "plugins": [
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    "transform-class-properties"
   ],
   "env": {
     "test": {
-      "presets": ["es2015"]
+      "presets": ["es2015", "stage-2"]
     }
   }
 }

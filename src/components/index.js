@@ -10,3 +10,4 @@ export { default as UserDropdown } from './UserDropdown/UserDropdown';
 export { default as Footer } from './Footer/Footer';
 export { default as PrivatePath } from './PrivatePath/PrivatePath';
 export { default as Alert } from './Alert/Alert';
+export { default as AutoComplete } from './AutoComplete/AutoComplete';

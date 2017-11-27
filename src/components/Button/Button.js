@@ -6,25 +6,14 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 class Button extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    text: PropTypes.string.isRequired,
-    primary: PropTypes.bool,
-    loading: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    primary: true,
-    className: undefined,
-    loading: false,
-  };
-
   render() {
     const {
       className,
       text,
       primary,
       loading,
+      disabled,
+      onClick,
       ...rest
     } = this.props;
 
@@ -34,6 +23,7 @@ class Button extends React.Component {
       [className]: !!className,
       primary,
       loading,
+      disabled,
     });
 
     const loadingClass = cx({
@@ -43,6 +33,9 @@ class Button extends React.Component {
     return (
       <button
         className={buttonClassName}
+        onClick={(e) => {
+          if (!disabled && onClick) onClick(e);
+        }}
         {...rest}
       >
         {!loading && text}
@@ -51,4 +44,17 @@ class Button extends React.Component {
     );
   }
 }
+Button.propTypes = {
+  className: PropTypes.string,
+  text: PropTypes.string.isRequired,
+  primary: PropTypes.bool,
+  loading: PropTypes.bool,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+};
+Button.defaultProps = {
+  primary: true,
+  className: undefined,
+  loading: false,
+};
 export default Button;

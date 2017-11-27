@@ -2,14 +2,15 @@
 
 
 .container {
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
 .item {
-  display: inline-flex;
   width: 100px;
   padding: 20px;
+  height: 100px;
   position: relative;
   cursor: pointer;
   box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
@@ -17,6 +18,8 @@
   margin-bottom: 8px;
   box-sizing: border-box;
   justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .item i {
@@ -34,4 +37,24 @@
 }
 .active {
   border: solid 1px $green;
+}
+
+
+
+.item img{
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+
+
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+.spin {
+  animation: spin 1s infinite linear;
 }

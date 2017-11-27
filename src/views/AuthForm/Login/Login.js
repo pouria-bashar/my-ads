@@ -15,7 +15,7 @@ import { isEmpty } from 'lodash';
 const initialValues = {
   email: '',
   password: '',
-  errors: [],
+  formErrors: {},
 };
 
 
@@ -24,6 +24,7 @@ class Login extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
     this.state = {
       ...initialValues,
       loading: false,
@@ -32,10 +33,15 @@ class Login extends React.Component {
   }
 
   handleChange(e) {
-    const { errors } = this.state;
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleBlur(e) {
+    // show error
+    const { formErrors } = this.state;
     const value = { [e.target.name]: e.target.value };
     const error = validate(value);
-    this.setState({ ...value });
+    this.setState({ formErrors: { ...formErrors, ...error } });
   }
 
   handleSubmit(e) {
@@ -44,7 +50,7 @@ class Login extends React.Component {
     this.setState({ loading: true, apiError: '' });
     this.props.login({ variables: { email, password }, refetchQueries: [{ query: queries.currentUser }] })
     .then(() => {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/');
     })
     .catch(err => {
       this.setState({ apiError: err.graphQLErrors.map(err => err.message)[0], loading: false });
@@ -59,8 +65,8 @@ class Login extends React.Component {
 
   render() {
     const { isAuthenticated, location } = this.props;
-    const { apiError } = this.state;
-    const { from } = location.state || { from: { pathname: '/dashboard' } };
+    const { apiError, formErrors } = this.state;
+    const { from } = location.state || { from: { pathname: '/' } };
     if (isAuthenticated) {
       return <Redirect to={from} />;
     }
@@ -70,26 +76,28 @@ class Login extends React.Component {
         className={styles.container}
         onSubmit={this.handleSubmit}
       >
-        <div className={styles.wrapper}>
-          <h2>Sign in</h2>
-          <TextField
-            type="text"
-            label="Email"
-            name="email"
-            onChange={this.handleChange}
-          />
-          <TextField
-            name="password"
-            label="Password"
-            type="password"
-            onChange={this.handleChange}
-          />
-          {!isEmpty(apiError) && <Alert type="error" message={apiError} />}
-          <Button
-            text="Login"
-            loading={this.state.loading}
-          />
-        </div>
+        <h1>Login</h1>
+        <TextField
+          type="text"
+          label="Email"
+          name="email"
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          error={formErrors.email}
+        />
+        <TextField
+          name="password"
+          label="Password"
+          type="password"
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          error={formErrors.password}
+        />
+        {!isEmpty(apiError) && <Alert type="error" message={apiError} />}
+        <Button
+          text="Login"
+          loading={this.state.loading}
+        />
       </form>
     );
   }

@@ -51,6 +51,8 @@
     "radix": "off",
     "no-undef": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "import/prefer-default-export": "off",
+    "function-paren-newline": "off"
   },
   "plugins": [
     "react"

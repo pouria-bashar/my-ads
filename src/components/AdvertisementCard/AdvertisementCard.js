@@ -7,25 +7,18 @@ import Carousel from './Carousel';
 const cx = classNames.bind(styles);
 
 class AdvertisementCard extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    item: PropTypes.object.isRequired,
-    onClick: PropTypes.func,
-  }
-
-  static defaultProps = {
-    className: undefined,
-  }
-
   render() {
     const {
       className,
       item,
       onClick,
+      readOnly,
+      style,
     } = this.props;
     return (
       <div
-        className={cx({ container: true, [className]: !!className })}
+        className={cx({ container: true, [className]: !!className, readOnly })}
+        style={style || {}}
         tabIndex="0"
       >
         <Carousel images={item.images} />
@@ -44,4 +37,16 @@ class AdvertisementCard extends React.Component {
     );
   }
 }
+
+AdvertisementCard.propTypes = {
+  className: PropTypes.string,
+  item: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+  readOnly: PropTypes.bool,
+  style: PropTypes.object,
+};
+
+AdvertisementCard.defaultProps = {
+  className: undefined,
+};
 export default AdvertisementCard;

@@ -8,15 +8,6 @@ import Picture from './Picture';
 const cx = classNames.bind(styles);
 
 class PicturesUpload extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    numberOfElements: PropTypes.number.isRequired,
-  }
-
-  static defauleProps = {
-    numberOfElements: 0,
-  }
-
   state = {
     activeIndex: 0,
   }
@@ -25,6 +16,8 @@ class PicturesUpload extends React.Component {
     const {
       className,
       numberOfElements,
+      upload,
+      onUploadFinish,
     } = this.props;
 
     const { activeIndex } = this.state;
@@ -34,7 +27,9 @@ class PicturesUpload extends React.Component {
           range(0, numberOfElements).map(index => (
             <Picture
               key={index}
+              upload={upload}
               isActive={activeIndex === index}
+              onUploadFinish={onUploadFinish}
             />
           ))
         }
@@ -42,4 +37,13 @@ class PicturesUpload extends React.Component {
     );
   }
 }
+PicturesUpload.propTypes = {
+  className: PropTypes.string,
+  numberOfElements: PropTypes.number.isRequired,
+  upload: PropTypes.func.isRequired,
+  onUploadFinish: PropTypes.func.isRequired,
+};
+PicturesUpload.defauleProps = {
+  numberOfElements: 0,
+};
 export default PicturesUpload;

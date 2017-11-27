@@ -1,0 +1,88 @@
+@import '../colours.css';
+
+.container {
+  position: relative;
+  color: $dark_blue;
+  width: 100%;
+  border-left: 0;
+  border-right: 0;
+}
+
+.inputContainer {
+  padding: 0 10px;
+  border: solid 1px $white;
+  display: flex;
+  align-items: center;
+}
+
+.inputContainer input {
+  padding: 16px 8px;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+/**
+ * Options
+ * @type {[type]}
+ */
+.optionsContainer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 300px;
+  overflow: auto;
+  z-index: 1;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.option {
+  padding: 10px 20px;
+  border: solid 1px $white;
+  box-sizing: border-box;
+  border-top: 0;
+  cursor: pointer;
+  &:hover {
+    background: rgba($dark_blue, 0.2);
+  }
+}
+
+
+
+/**
+ * selectedOption
+ */
+.selectedOption {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  background: rgba($dark_blue, 0.2);
+  border-radius: 4px;
+  padding: 4px;
+  box-sizing: border-box;
+  color: $dark_blue;
+  transition: background .2s ease;
+  margin-right: 8px;
+  &:hover {
+    background: rgba($dark_blue, 0.5);
+    font-weight: 500;
+  }
+
+}
+.selectedOption span{
+  flex-grow: 1;
+  margin-right: 4px;
+}
+.selectedOption > i {
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: blue;
+  color: #fff;
+  transition: background .2s ease;
+  &:hover {
+    background: $dark_blue;
+  }
+}

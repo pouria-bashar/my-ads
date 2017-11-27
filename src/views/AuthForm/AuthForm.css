@@ -1,0 +1,29 @@
+@import "../../components/colours.css";
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  border: solid 1px $white;
+}
+
+.tabs {
+  width: 100%;
+  display: flex;
+}
+
+.tabs > button {
+  padding: 20px;
+  flex-grow: 1;
+  text-decoration: none;
+  color: $dark_blue;
+  border-bottom: solid 4px transparent;
+  transition : border 300ms ease-out;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+
+.active {
+  border-bottom: solid 4px $dark_blue !important;
+  font-weight: bold;
+}

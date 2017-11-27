@@ -6,16 +6,12 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 class TextArea extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    error: PropTypes.string,
-    style: PropTypes.object,
-  }
   render() {
     const {
       className,
       error,
       style,
+      ...rest
     } = this.props;
     return (
       <textarea
@@ -23,8 +19,14 @@ class TextArea extends React.Component {
         cols="50"
         style={style}
         className={cx({ container: true, [className]: !!className, error })}
+        {...rest}
       />
     );
   }
 }
+TextArea.propTypes = {
+  className: PropTypes.string,
+  error: PropTypes.string,
+  style: PropTypes.object,
+};
 export default TextArea;

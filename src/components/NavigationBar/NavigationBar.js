@@ -29,6 +29,7 @@ class NavigationBar extends React.Component {
           Links.GUEST_LINKS.map(link => (
             <li key={link.path}>
               <NavLink
+                exact
                 activeClassName={styles.active}
                 to={link.path}
               >{link.label}
@@ -49,6 +50,7 @@ class NavigationBar extends React.Component {
           Links.USER_LINKS.map(link => (
             <li key={link.path}>
               <NavLink
+                exact
                 activeClassName={styles.active}
                 to={link.path}
               >{link.label}

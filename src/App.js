@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import PropTypes from 'prop-types';
-import { Login, CreateAd, Dashboard, AdvertDetails, Signup } from 'views';
+import { CreateAd, Dashboard, AdvertDetails, AuthForm, NotFound } from 'views';
 import { NavigationBar, PrivatePath } from 'components';
 import {
   BrowserRouter as Router,
@@ -27,14 +27,10 @@ class App extends React.Component {
             <Switch>
               <Route
                 path="/login"
-                render={(props) => <Login isAuthenticated={isAuthenticated} {...props} />}
-              />
-              <Route
-                path="/signup"
-                component={Signup}
+                render={(props) => <AuthForm isAuthenticated={isAuthenticated} {...props} />}
               />
               <PrivatePath
-                path="/dashboard"
+                path="/"
                 exact
                 component={Dashboard}
                 isAuthenticated={isAuthenticated}
@@ -51,6 +47,7 @@ class App extends React.Component {
                 component={AdvertDetails}
                 isAuthenticated={isAuthenticated}
               />
+              <Route component={NotFound} />
             </Switch>
           </main>
         </div>

@@ -49,6 +49,7 @@ module.exports = {
       utils: resolve('./src/utils'),
       constants: resolve('./src/constants'),
       _graphql: resolve('./src/graphql'),
+      selectors: resolve('./src/selectors/index.js'),
     },
   },
   plugins: [

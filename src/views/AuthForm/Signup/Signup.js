@@ -60,7 +60,7 @@ class Signup extends React.Component {
       refetchQueries: [{ query: queries.currentUser }],
     })
     .then(() => {
-      this.props.history.push('/dashboard');
+      this.props.history.push('/');
     })
     .catch(err => {
       this.setState({ apiError: err.graphQLErrors.map(err => err.message)[0], loading: false });
@@ -86,38 +86,36 @@ class Signup extends React.Component {
         className={styles.container}
         onSubmit={this.handleSubmit}
       >
-        <div className={styles.wrapper}>
-          <h2>Sign up</h2>
-          <TextField
-            type="text"
-            label="First name"
-            name="firstName"
-            onChange={this.handleChange}
-          />
-          <TextField
-            type="text"
-            label="Last name"
-            name="lastName"
-            onChange={this.handleChange}
-          />
-          <TextField
-            type="text"
-            label="Email"
-            name="email"
-            onChange={this.handleChange}
-          />
-          <TextField
-            name="password"
-            label="Password"
-            type="password"
-            onChange={this.handleChange}
-          />
-          {!isEmpty(apiError) && <Alert type="error" message={apiError} />}
-          <Button
-            text="Sign Up"
-            loading={this.state.loading}
-          />
-        </div>
+        <h1>Signup</h1>
+        <TextField
+          type="text"
+          label="First name"
+          name="firstName"
+          onChange={this.handleChange}
+        />
+        <TextField
+          type="text"
+          label="Last name"
+          name="lastName"
+          onChange={this.handleChange}
+        />
+        <TextField
+          type="text"
+          label="Email"
+          name="email"
+          onChange={this.handleChange}
+        />
+        <TextField
+          name="password"
+          label="Password"
+          type="password"
+          onChange={this.handleChange}
+        />
+        {!isEmpty(apiError) && <Alert type="error" message={apiError} />}
+        <Button
+          text="Sign Up"
+          loading={this.state.loading}
+        />
       </form>
     );
   }

@@ -10,8 +10,14 @@
   min-width: 100px;
   font-size: 1rem;
   height: 56px;
+  transition: background 0.3s linear;
 }
 
+.disabled {
+  background: $white;
+  color: grey;
+  cursor: not-allowed;
+}
 
 @keyframes spin {
     from {transform:rotate(0deg);}

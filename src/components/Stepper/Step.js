@@ -3,13 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './Stepper.css';
 
 class Step extends React.Component {
-  static propTypes = {
-    children: PropTypes.any,
-    isExpanded: PropTypes.bool,
-    title: PropTypes.string,
-    index: PropTypes.number,
-  };
-
   render() {
     const {
       isExpanded,
@@ -25,7 +18,7 @@ class Step extends React.Component {
         </div>
         <div
           className={styles.content}
-          style={{ transform: isExpanded ? 'scaleY(1)' : 'scaleY(0)' }}
+          style={{ transform: isExpanded ? 'scaleY(1)' : 'scaleY(0)', padding: isExpanded ? '16px' : '0' }}
         >
           {isExpanded && children}
         </div>
@@ -33,4 +26,10 @@ class Step extends React.Component {
     );
   }
 }
+Step.propTypes = {
+  children: PropTypes.any,
+  isExpanded: PropTypes.bool,
+  title: PropTypes.string,
+  index: PropTypes.number,
+};
 export default Step;

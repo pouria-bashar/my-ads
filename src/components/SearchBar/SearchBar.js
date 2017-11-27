@@ -6,15 +6,6 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 class SearchBar extends React.Component {
-  static propTypes = {
-    className: PropTypes.string,
-    style: PropTypes.object,
-  }
-
-  static defaultProps = {
-    className: undefined,
-  };
-
   render() {
     const {
       className,
@@ -30,4 +21,11 @@ class SearchBar extends React.Component {
     );
   }
 }
+SearchBar.propTypes = {
+  className: PropTypes.string,
+  style: PropTypes.object,
+};
+SearchBar.defaultProps = {
+  className: undefined,
+};
 export default SearchBar;

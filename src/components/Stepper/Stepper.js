@@ -4,12 +4,6 @@ import Step from './Step';
 import PropTypes from 'prop-types';
 
 class Stepper extends React.Component {
-  static propTypes = {
-    children: PropTypes.any,
-    activeStep: PropTypes.number.isRequired,
-  };
-
-
   renderChildren(children, activeStep) {
     const childrenWithProps = React.Children.map(
       children,
@@ -40,4 +34,8 @@ class Stepper extends React.Component {
 }
 
 Stepper.Step = Step;
+Stepper.propTypes = {
+  children: PropTypes.any,
+  activeStep: PropTypes.number.isRequired,
+};
 export default Stepper;

@@ -3,10 +3,6 @@ import styles from './AdvertisementCard.css';
 import PropTypes from 'prop-types';
 
 class Carousel extends React.Component {
-  static propTypes = {
-    images: PropTypes.array,
-  };
-
   state = {
     imageIndex: 0,
   }
@@ -49,4 +45,7 @@ class Carousel extends React.Component {
     );
   }
 }
+Carousel.propTypes = {
+  images: PropTypes.array,
+};
 export default Carousel;
